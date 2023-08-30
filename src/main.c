@@ -6,11 +6,16 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:03:09 by hsievier          #+#    #+#             */
-/*   Updated: 2023/08/30 15:03:10 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:55:44 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	init_lexer()
+{
+	
+}
 
 int	word_count(char *str)
 {

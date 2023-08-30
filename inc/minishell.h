@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:01:13 by hsievier          #+#    #+#             */
-/*   Updated: 2023/08/30 15:17:21 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:54:41 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+typedef enum e_token
+{
+	WORD,
+	PIPE,
+	SPACE,
+	GREATER_THAN,
+	LESS_THAN,
+	DOUBLE_QUOTES,
+	SINGLE_QUOTES,
+	HEREDOC,
+	APPEND,
+	EXPANSION,
+	MINI_FILE
+}	t_type;
 
 typedef struct s_vars
 {
@@ -40,7 +54,13 @@ typedef struct s_vars
 typedef struct s_shell
 {
 	char		**env;
-	t_vars		*head;
+	t_vars		*var;
 } t_shell;
 
+
+//lexer
+void	get_tokens(t_vars **var);
+
+//addfunct
+int		check_type(t_vars **tmp);
 #endif
