@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 19:01:30 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:58:16 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct s_shell
 {
 	char		**env;
 	t_vars		*var;
-} t_shell;
+} 	t_shell;
 
-
+extern t_shell	*v;
 //lexer
 void	get_tokens(t_vars **var);
 

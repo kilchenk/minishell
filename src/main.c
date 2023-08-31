@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 19:06:01 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:58:30 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	lexer(void)
+{
+	get_tokens(&(v->var));
+	
+}
 
 int	main(int argc, char **argv, char **envp)
 {

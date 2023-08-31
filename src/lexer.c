@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 16:18:50 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:51:34 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,17 @@ int	check_type(t_vars **tmp)
 	return (0);
 }
 
+t_vars	*read_token(int *i, char *tokens)
+{
+	
+}
+
+// void	find_token_(t_vars **tmp, t_vars **new, t_vars **new_token)
+// {
+	
+// }
+
+// void	find_token(t_vars **tmp)
+// {
+	
+// }
