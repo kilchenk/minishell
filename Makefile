@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/08/31 14:29:15 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/08/31 19:59:15 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ INC = inc
 DEBUG_SEG_FAULTS = -fsanitize=address #for segfault checking
 RM = rm -rf
 CC = gcc
-SRCS = src/main.c src/lexer.c src/split.c src/split2.c
+SRCS = src/main.c src/lexer.c src/split.c src/split2.c src/lexer2.c src/errors.c \
+		src/expander.c src/utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
