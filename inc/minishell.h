@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 15:01:13 by hsievier          #+#    #+#             */
-/*   Updated: 2023/08/30 15:54:41 by hsievier         ###   ########.fr       */
+/*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
+/*   Updated: 2023/08/30 19:01:30 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-
-# define MINISHELL_H
 
 # include "../Libft/libft.h"
 # include "../Libft/get_next_line.h"
@@ -35,12 +33,8 @@ typedef enum e_token
 	SPACE,
 	GREATER_THAN,
 	LESS_THAN,
-	DOUBLE_QUOTES,
-	SINGLE_QUOTES,
 	HEREDOC,
-	APPEND,
-	EXPANSION,
-	MINI_FILE
+	APPEND
 }	t_type;
 
 typedef struct s_vars
@@ -63,4 +57,10 @@ void	get_tokens(t_vars **var);
 
 //addfunct
 int		check_type(t_vars **tmp);
+int		word_count(char *str);
+int		place_word(char **arr, char *str);
+int		place_word(char **arr, char *str);
+char	**split_mini(char *str);
+char	 *double_quote(char *str);
+
 #endif
