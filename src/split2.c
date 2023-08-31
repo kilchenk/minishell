@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 14:46:12 by kilchenk         ###   ########.fr       */
+/*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
+/*   Updated: 2023/08/31 14:39:05 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main_split(char **splitt, char *readd)
 {
-	char	*string;
-	char	**split;
+	add_history(readd);
+	
 
-	(void)argc;
-	(void)argv;
-	while (1)
+}
+
+char	copy_word(char *str)
+{
+	int		i;
+	int 	wi;
+	int 	len;
+	char	*word;
+
+	i = 0;
+	wi = 0;
+	while (str[wi] != '\0' && str[wi] != ' ' && str[wi] != '\t'
+		&& str[wi] != '\n' && str[wi] != '\"' && str[wi] != '\'')
+		wi++;
+	len = wi;
+	word = malloc(sizeof(char) * (len + 1));
+	word[len] = '\0';
+	while (i < len)
 	{
-		string = readline("minishel > ");
-		if (!string)
-			return (0);
-		if (!(ft_strncmp(string, "\0", 1)))
-		{
-			free(string);
-			continue ;
-		}
-		split = split_mini(string);
-		if (main_split(split, string == 1))
-			continue ;
+		word[i] = str[i];
+		i++;
 	}
+	return (*word);
 }

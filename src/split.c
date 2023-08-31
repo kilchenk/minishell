@@ -6,34 +6,11 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 20:46:45 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:11:08 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-char	copy_word(char *str)
-{
-	int		i;
-	int 	wi;
-	int 	len;
-	char	*word;
-
-	i = 0;
-	wi = 0;
-	while (str[wi] != '\0' && str[wi] != ' ' && str[wi] != '\t'
-		&& str[wi] != '\n' && str[wi] != '\"' && str[wi] != '\'')
-		wi++;
-	len = wi;
-	word = malloc(sizeof(char) * (len + 1));
-	word[len] = '\0';
-	while (i < len)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	return (*word);
-}
 
 void	words(char **arr, char **str, int *i_word)
 {

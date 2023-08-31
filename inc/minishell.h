@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 19:01:30 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:51:01 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,18 @@ typedef struct s_shell
 {
 	char		**env;
 	t_vars		*var;
-} t_shell;
+} 	t_shell;
 
-
+extern t_shell	*v;
 //lexer
 void	get_tokens(t_vars **var);
+void	find_token(t_vars **tmp)
+void	get_word(t_vars **var);
 
 //addfunct
 int		check_type(t_vars **tmp);
+int		main_split(char **splitt, char *readd);
+char	copy_word(char *str);
 int		word_count(char *str);
 int		place_word(char **arr, char *str);
 int		place_word(char **arr, char *str);
