@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 11:58:30 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:41:01 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	lexer(void)
 {
 	get_tokens(&(v->var));
-	
+	get_word(&(v->var));
 }
 
 int	main(int argc, char **argv, char **envp)

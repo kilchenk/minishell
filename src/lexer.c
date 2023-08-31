@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 11:51:34 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:31:17 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,50 @@ int	check_type(t_vars **tmp)
 	return (0);
 }
 
-t_vars	*read_token(int *i, char *tokens)
+void	get_word(t_vars **var)
+{
+	t_vars *tmp;
+	
+	tmp = *var;
+	while(tmp)
+	{
+		if (tmp->type == WORD)
+		{
+			find_token(&tmp);
+		}
+		tmp = tmp->type;
+	}
+}
+
+t_vars	*creat_token(int *i, char *tokens)
 {
 	
 }
 
-// void	find_token_(t_vars **tmp, t_vars **new, t_vars **new_token)
-// {
-	
-// }
+void	find_token_algo(t_vars **tmp, t_vars **new, t_vars **new_token)
+{
+	int	i;
 
-// void	find_token(t_vars **tmp)
-// {
-	
-// }
+	i = 0;
+	if ((*tmp)->tokens[i] == '<' || (*tmp)->tokens[i] == '>' || (*tmp)->tokens[i] == '|')
+	{
+		(*new)->next = creat_token(i, (*tmp)->tokens);
+		
+	}
+		
+}
+
+void	find_token(t_vars **tmp)
+{
+	t_vars	*new;
+	t_vars	*new_token;
+
+	new = malloc(sizeof(t_vars));
+	new->tokens = NULL;
+	new->type = WORD;
+	find_token_algo(tmp, &new, new_token);
+	free((*tmp)->tokens);
+	(*tmp)->tokens = NULL;
+	new->next = (*tmp)->next;
+	(*tmp) = new->next;
+}

@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 11:58:16 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:25:01 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_shell
 extern t_shell	*v;
 //lexer
 void	get_tokens(t_vars **var);
+void	find_token(t_vars **tmp)
+void	get_word(t_vars **var);
 
 //addfunct
 int		check_type(t_vars **tmp);
