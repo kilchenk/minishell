@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 17:07:07 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:14:49 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	main_split(char **splitt, char *readd)
 		return (1);
 	}
 	lexer();
-	//after resirection
+	g_shell->pipes = ;
 	return (0);
 }
 
