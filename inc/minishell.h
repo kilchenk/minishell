@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 19:59:35 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:31:36 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef enum e_token
 	GREATER_THAN,
 	LESS_THAN,
 	HEREDOC,
-	APPENDl,
+	APPEND,
 	DOUBLE_QUOTES,
 	SINGLE_QUOTES,
 }	t_type;
@@ -58,6 +58,7 @@ typedef struct s_shell
 
 extern t_shell	*g_shell;
 //lexer
+void	lexer(void);
 void	get_tokens(t_vars **var);
 void	find_token(t_vars **tmp);
 void	get_word(t_vars **var);
