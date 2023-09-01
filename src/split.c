@@ -6,48 +6,25 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/30 20:46:45 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:36:16 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	copy_word(char *str)
-{
-	int		i;
-	int 	wi;
-	int 	len;
-	char	*word;
-
-	i = 0;
-	wi = 0;
-	while (str[wi] != '\0' && str[wi] != ' ' && str[wi] != '\t'
-		&& str[wi] != '\n' && str[wi] != '\"' && str[wi] != '\'')
-		wi++;
-	len = wi;
-	word = malloc(sizeof(char) * (len + 1));
-	word[len] = '\0';
-	while (i < len)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	return (*word);
-}
-
 void	words(char **arr, char **str, int *i_word)
 {
 	arr[*i_word] = copy_word(*str);
 	(*i_word)++;
-	while (**str != '\0' && **str != ' ' && **str !='\n' && **str != '\t'
+	while (**str != '\0' && **str != ' ' && **str != '\n' && **str != '\t'
 		&& **str != '\r' && **str != '\v' && **str != '\f' && **str != '\''
 		&& **str != '\"')
-	(*str)++;
+		(*str)++;
 }
 
-char *double_quote(char *str)
+char	*double_quote(char *str)
 {
-	char *word;
+	char	*word;
 
 	word = malloc(2);
 	if (word[0] == '\'')
@@ -55,13 +32,13 @@ char *double_quote(char *str)
 	else if (word[0] == '\"')
 		word[0] = '\"';
 	word[1] = '\0';
-	return(word);
+	return (word);
 }
 
 int	place_word(char **arr, char *str)
 {
 	int	i_word;
-	
+
 	i_word = 0;
 	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r'
 		|| *str == '\v' || *str == '\f')
@@ -118,7 +95,7 @@ char	**split_mini(char *str)
 	int		word;
 
 	word = word_count(str);
-	arr = malloc(sizeof(char*) * (word + 1));
+	arr = malloc(sizeof(char *) * (word + 1));
 	arr[word] = NULL;
-	place_word(arr, str);	
+	place_word(arr, str);
 }
