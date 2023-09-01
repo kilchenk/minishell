@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 19:59:35 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:03:49 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-
 typedef enum e_token
 {
 	WORD,
@@ -36,7 +35,7 @@ typedef enum e_token
 	GREATER_THAN,
 	LESS_THAN,
 	HEREDOC,
-	APPENDl,
+	APPEND,
 	DOUBLE_QUOTES,
 	SINGLE_QUOTES,
 }	t_type;
@@ -65,6 +64,7 @@ void	*join_and_free(char **str, char plus);
 void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token);
 t_vars	*create_token(int *i, char *tokens);
 int		check(t_vars **tmp);
+void	lexer(void);
 
 //addfunct
 int		check(t_vars **tmp);

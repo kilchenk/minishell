@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 20:18:07 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:03:20 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	main_split(char **splitt, char *readd)
 		free(splitt);
 		return (1);
 	}
-	//here we need ft lexer(start)!!!!
+	lexer();
 	//after resirection
 	//free all
 }
