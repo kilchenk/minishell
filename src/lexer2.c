@@ -6,21 +6,24 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:54:55 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 12:33:04 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:22:04 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	*join_and_free(char **str, char plus)
+void	join_and_free(char **str, char plus)
 {
-	char	second[2];
-	char	*result;
+	char	*res;
+	char	*add;
 
-	second[0] = plus;
-	second[1] = '/0';
-	result = ft_strjoin(str, second);
-	return (result);
+	add = malloc(2);
+	add[1] = 0;
+	add[0] = plus;
+	res = ft_strjoin(*str, add);
+	free(*str);
+	free(add);
+	*str = res;
 }
 
 void	lexer(void)
@@ -38,7 +41,7 @@ void	get_word(t_vars **var)
 	{
 		if (tmp->type == WORD)
 		{
-			find_token(&var);
+			find_token(var);
 		}
 		tmp = tmp->next;
 	}

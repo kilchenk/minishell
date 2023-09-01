@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/08/31 19:59:15 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/09/01 16:09:21 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ LIB = libft.a
 SRC = src
 OBJ = obj
 INC = inc
-#CFLAGS = -Wall -Wextra -Werror -g -I $(INC)
-DEBUG_SEG_FAULTS = -fsanitize=address #for segfault checking
+#CFLAGS = -fsanitize=address -g -I $(INC)
+#DEBUG_SEG_FAULTS = -fsanitize=address #for segfault checking
 RM = rm -rf
 CC = gcc
 SRCS = src/main.c src/lexer.c src/split.c src/split2.c src/lexer2.c src/errors.c \

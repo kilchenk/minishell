@@ -6,12 +6,17 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 19:36:16 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:02:32 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+
+/*
+	arr[i] -> *(*char) -> char
+	copy_word -> char
+*/ 
 void	words(char **arr, char **str, int *i_word)
 {
 	arr[*i_word] = copy_word(*str);
@@ -19,23 +24,23 @@ void	words(char **arr, char **str, int *i_word)
 	while (**str != '\0' && **str != ' ' && **str != '\n' && **str != '\t'
 		&& **str != '\r' && **str != '\v' && **str != '\f' && **str != '\''
 		&& **str != '\"')
-		(*str)++;
+		++(*str);
 }
 
 char	*double_quote(char *str)
 {
 	char	*word;
-
+	
 	word = malloc(2);
-	if (word[0] == '\'')
+	if (*str == '\'')
 		word[0] = '\'';
-	else if (word[0] == '\"')
+	else
 		word[0] = '\"';
 	word[1] = '\0';
 	return (word);
 }
 
-int	place_word(char **arr, char *str)
+void	place_word(char **arr, char *str)
 {
 	int	i_word;
 
@@ -82,8 +87,8 @@ int	word_count(char *str)
 			continue ;
 		}
 		while (*str != ' ' && *str != '\n' && *str != '\t' && *str != '\r'
-			&& *str != '\v' && *str != '\f' && *str != '\'' && *str 
-			!= ' ' && *str != '\"')
+			&& *str != '\v' && *str != '\f' && *str != '\'' && *str != ' ' 
+			&& *str != '\"')
 			str++;
 	}
 	return (word);
@@ -96,6 +101,8 @@ char	**split_mini(char *str)
 
 	word = word_count(str);
 	arr = malloc(sizeof(char *) * (word + 1));
-	arr[word] = NULL;
+	arr[word] = 0;
 	place_word(arr, str);
+	return (arr);
 }
+
