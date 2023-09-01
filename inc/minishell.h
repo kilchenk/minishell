@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 12:03:49 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:13:55 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_shell
 
 extern t_shell	*g_shell;
 //lexer
+void	lexer(void);
 void	get_tokens(t_vars **var);
 void	find_token(t_vars **tmp);
 void	get_word(t_vars **var);
@@ -64,7 +65,6 @@ void	*join_and_free(char **str, char plus);
 void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token);
 t_vars	*create_token(int *i, char *tokens);
 int		check(t_vars **tmp);
-void	lexer(void);
 
 //addfunct
 int		check(t_vars **tmp);

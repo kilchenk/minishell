@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 11:56:50 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:18:05 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,6 @@ void	get_tokens(t_vars **var)
 	}
 }
 
-void	get_word(t_vars **var)
-{
-	t_vars	*tmp;
-
-	tmp = *var;
-	while (tmp)
-	{
-		if (tmp->type == WORD)
-		{
-			find_token(&var);
-		}
-		tmp = tmp->next;
-	}
-}
-
 t_vars	*create_token(int *i, char *tokens)
 {
 	t_vars	*new;
@@ -78,29 +63,31 @@ t_vars	*create_token(int *i, char *tokens)
 	{
 		new->type = HEREDOC;
 		(*i) += 2;
-		return new;
+		return (new);
 	}
 	else if (tokens[*i] == '>' && tokens[(*i) + 1] == '>')
 	{
 		new->type = APPEND;
 		(*i) += 2;
-		return new;
+		return (new);
 	}
 	else if (tokens[*i] == '<')
 		new->type = LESS_THAN;
 	else if (tokens[*i] == '>')
 		new->type = GREATER_THAN;
 	(*i)++;
-	return new;
+	return (new);
 }
 
-void token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
+void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (tmp->tokens[i])
 	{
-		if (tmp->tokens[i] == '<' || tmp->tokens[i] == '>' || tmp->tokens[i] == '|')
+		if (tmp->tokens[i] == '<' || tmp->tokens[i] == '>' 
+			|| tmp->tokens[i] == '|')
 		{
 			(*new)->next = create_token(&i, tmp->tokens);
 			(*new_token) = (*new)->next;
@@ -108,8 +95,8 @@ void token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
 			(*new) = (*new_token)->next;
 			(*new)->type = WORD;
 			(*new)->tokens = NULL;
-			continue;
-			}
+			continue ;
+		}
 		else
 		{
 			(*new)->tokens = join_and_free((*new)->tokens, tmp->tokens[i]);
@@ -120,10 +107,12 @@ void token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
 
 void	find_token(t_vars **tmp)
 {
-	t_vars *new = malloc(sizeof(t_vars));
-	new->tokens = NULL;
+	t_vars	*new_token;
+	t_vars	*new;
+
+	new = malloc(sizeof(t_vars));
 	new->type = WORD;
-	t_vars *new_token;
+	new->tokens = NULL;
 	token_algo(*tmp, &new, &new_token);
 	free((*tmp)->tokens);
 	(*tmp)->tokens = NULL;

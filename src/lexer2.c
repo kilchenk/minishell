@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:54:55 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 12:02:35 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:15:53 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	*join_and_free(char **str, char plus)
 {
 	char	second[2];
 	char	*result;
+
 	second[0] = plus;
 	second[1] = '/0';
 	result = ft_strjoin(str, second);
@@ -25,5 +26,20 @@ void	*join_and_free(char **str, char plus)
 void	lexer(void)
 {
 	get_tokens(&(g_shell->var));
-	find_token(&(g_shell->var));
+	get_word(&(g_shell->var));
+}
+
+void	get_word(t_vars **var)
+{
+	t_vars	*tmp;
+
+	tmp = *var;
+	while (tmp)
+	{
+		if (tmp->type == WORD)
+		{
+			find_token(&var);
+		}
+		tmp = tmp->next;
+	}
 }
