@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 16:07:28 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:34:39 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <unistd.h>
 
 # define MAX_PATH 2000
+# define SYNTAX_ERROR "Error: syntax error near unexpected token\n"
 
 typedef enum e_token
 {
@@ -50,9 +51,23 @@ typedef struct s_vars
 	struct s_vars	*next;
 }	t_vars;
 
+typedef struct s_pipes
+{
+	char 	**argv;
+	char 	*cmd;
+	int		input;
+	int		output;
+	int		fd[2];
+	int		pipe_i;
+	int		next;
+	char	*heredoc;
+}	t_pipes;
+
+
 typedef struct s_shell
 {
 	char		**env;
+	t_pipes		*pipes;	
 	t_vars		*var;
 }	t_shell;
 
@@ -79,6 +94,7 @@ int		word_count(char *str);
 void	place_word(char **arr, char *str);
 char	**split_mini(char *str);
 char	*double_quote(char *str);
+t_pipes	*redirection(t_vars **token);
 
 
 #endif
