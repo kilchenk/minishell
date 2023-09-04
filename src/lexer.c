@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 12:18:05 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:23:55 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
 		}
 		else
 		{
-			(*new)->tokens = join_and_free((*new)->tokens, tmp->tokens[i]);
+			join_and_free(&((*new)->tokens), tmp->tokens[i]);
 		}
 		i++;
 	}

@@ -6,13 +6,15 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/08/31 14:46:12 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:59:03 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+t_shell *g_shell = NULL;
+
+int	main(int argc, char **argv) //char **envp)
 {
 	char	*string;
 	char	**split;
@@ -30,7 +32,8 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		}
 		split = split_mini(string);
-		if (main_split(split, string == 1))
+		if (main_split(split, string) == 1)
 			continue ;
 	}
+	return (0);
 }

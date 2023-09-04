@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   split2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 12:13:30 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:37:02 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void init_token(t_vars **tmp,  t_vars **token, char **split, int *word)
+void	init_token(t_vars **tmp,  t_vars **var, char **split, int *word)
 {
 	*tmp = malloc(sizeof(t_vars));
 	(*tmp)->tokens = ft_strdup(split[*word]);
 	(*tmp)->lenght = ft_strlen(split[*word]);
 	(*tmp)->type = -1;
-	(*tmp)->next = *token;
-	*token = *tmp;
+	(*tmp)->next = *var;
+	*var = *tmp;
 	(*word)--;
 }
 
-void	cat_quote(int *word, char **split, t_type **token)
+void	cat_quote(int *word, char **split, t_vars **var)
 {
-	char	*quote;
+	char	quote;
 	t_vars	*tmp;
 
 	tmp = malloc(sizeof(t_type));
@@ -42,8 +42,8 @@ void	cat_quote(int *word, char **split, t_type **token)
 		tmp->type = SINGLE_QUOTES;
 	else
 		tmp->type = DOUBLE_QUOTES;
-	tmp->next = *token;
-	*token = tmp;
+	tmp->next = *var;
+	*var = tmp;
 	(*word)--;
 }
 
@@ -52,18 +52,20 @@ int	close_quote(char **split)
 	int	i;
 	int	quote;
 
+	quote = 0;
+	i = 0;
 	while (split[i])
 	{
 		if (quote)
 		{
-			if (quote == 1 && (ft_strncmp(split[i], '\'', 1)))
+			if (quote == 1 && (ft_strncmp(split[i], "\'", 1) == 0))
 				quote = 0;
-			else if (quote == 2 && (ft_strncmp(split[i], '\"', 1)))
+			else if (quote == 2 && (ft_strncmp(split[i], "\"", 1) == 0))
 				quote = 0;
 		}
-		else if ((ft_strncmp(split[i], '\'', 1) == 0))
+		else if ((ft_strncmp(split[i], "\'", 1) == 0))
 			quote = 1;
-		else if ((ft_strncmp(split[i], '\"', 1) == 0))
+		else if ((ft_strncmp(split[i], "\"", 1) == 0))
 			quote = 2;
 		i++;
 	}
@@ -72,10 +74,10 @@ int	close_quote(char **split)
 	return (0);
 }
 
-int	init_list(t_shell **token, char *read, char **split)
+int	init_list(t_vars **var, char *read, char **split)
 {
 	int		word;
-	t_type	*tmp;
+	t_vars	*tmp;
 
 	if (close_quote(split) == 1)
 	{
@@ -88,29 +90,48 @@ int	init_list(t_shell **token, char *read, char **split)
 	{
 		if(split[word][0] == '\'' || split[word][0] == '\"')
 		{
-			cat_quote(&word, split, token);
+			cat_quote(&word, split, var);
 			continue ;
 		}
-		init_token(&tmp, token, split, &word);
+		init_token(&tmp, var, split, &word);
 	}
 	return (0);
 }
 
 int	main_split(char **splitt, char *readd)
 {
+	int	i;
+	
+	i = 0;
 	add_history(readd);
-	if (init_list(&(g_shell->token), readd, splitt) == 1)
+	if (init_list(&(g_shell->var), readd, splitt) == 1)
 	{
-		free(readd);
+		while (splitt[i])
+		{
+			free(splitt[i]);
+			i++;	
+		}
 		free(splitt);
+		free(readd);
 		return (1);
 	}
 	lexer();
-	//after resirection
-	//free all
+	g_shell->pipes = redirection(&(g_shell->pipes));
+	if (g_shell->pipes == NULL)
+	{
+		while (splitt[i])
+		{
+			free(splitt[i]);
+			i++;	
+		}
+		free(splitt);
+		free(readd);
+		return (1);
+	}
+	return (0);
 }
 
-char	copy_word(char *str)
+char	*copy_word(char *str)
 {
 	int		i;
 	int		wi;
@@ -130,5 +151,5 @@ char	copy_word(char *str)
 		word[i] = str[i];
 		i++;
 	}
-	return (*word);
+	return (word);
 }
