@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 13:06:12 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:08:48 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ char	**split_mini(char *str);
 char	*double_quote(char *str);
 t_pipes	*redirection(t_vars **token);
 int		error(char *err);
-
+int		quote(t_pipes **tmp, t_vars **token, int *first, int *words_count);
+int		pipes(t_pipes **tmp, t_vars **token, int *first, int *words_count);
+t_pipes	*init_pipes(int index);
 
 #endif

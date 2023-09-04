@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 13:10:44 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:09:35 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,24 @@ int	red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 			if ((g_shell->pipes) == NULL)
 				return (1);
 		}
+		else if ((*token)->type == SINGLE_QUOTES 
+			|| (*token)->type == DOUBLE_QUOTES || (*token)->type == WORD)
+		{
+			if (quote(tmp, token, first, words_count))
+				continue ;
+		}
+		else if ((*token)->type == PIPE)
+		{
+			if (pipes(tmp, token, first, words_count))
+				return (error("Error"));
+		}
+		else
+			*token = (*token)->next;
 	}
+	return (0);
 }
 
-t_pipes	*init_pipe(int index)
+t_pipes	*init_pipes(int index)
 {
 	t_pipes	*pipe;
 	int		i;
@@ -142,7 +156,7 @@ t_pipes	*redirection(t_vars **token)
 	int		tfrist;
 	int		count_words;
 
-	g_shell->pipes = init_pipe(0);
+	g_shell->pipes = init_pipes(0);
 	tmp = g_shell->pipes;
 	tfrist = 0;
 	count_words = 0;

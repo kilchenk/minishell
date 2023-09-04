@@ -6,7 +6,7 @@
 #    By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/09/04 13:11:21 by hsievier         ###   ########.fr        #
+#    Updated: 2023/09/04 13:48:13 by hsievier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIB = libft.a
 SRC = src
 OBJ = obj
 INC = inc
-CFLAGS = -fsanitize=address -g -I $(INC) #-Wextra -Werror -Wall
+#CFLAGS = -fsanitize=address -g -I $(INC) #-Wextra -Werror -Wall
 #DEBUG_SEG_FAULTS = -fsanitize=address #for segfault checking
 RM = rm -rf
 CC = gcc
