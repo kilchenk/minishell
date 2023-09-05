@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection1.c                                     :+:      :+:    :+:   */
+/*   redirection2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/04 14:09:48 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:58:37 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	quote(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 	return (0);
 }
 
-int	pipes(t_pipes **tmp, t_vars **token, int *first, int *words_count)
+int	pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *count_words)
 {
 	if (!(*first))
 		return (1);
-	(*tmp)->argv[*words_count] = NULL;
-	*words_count = 0;
+	(*tmp)->argv[*count_words] = NULL;
+	*count_words = 0;
 	*first = (*tmp)->pipe_i;
-	*token = (*token)->next;
-	(*tmp)->next = init_pipes(*first + 1);
+	*token_tmp = (*token_tmp)->next;
+	(*tmp)->next = init_pipe(*first + 1);
 	*tmp = (*tmp)->next;
 	*first = 0;
 	return (0);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 14:09:35 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:05:45 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void strjoin_free(char **str, char add)
+void charjoin_free(char **str, char add)
 {
 	char	*res;
 	char	*adder;
@@ -22,7 +22,7 @@ void strjoin_free(char **str, char add)
 	adder[1] = 0;
 	res = ft_strjoin(*str, adder);
 	free(*str);
-	free(*adder);
+	free(adder);
 	*str = res;
 }
 
@@ -30,7 +30,7 @@ char	*here_doc_init(char	**file_name, t_vars	**token_tmp, t_pipes **tmp, int	*fi
 {
 	char	*limiter;
 	*file_name = ft_strdup(".here_doc");
-	strjoin_free(file_name, (*tmp)->pipe_i + '0');
+	charjoin_free(file_name, (*tmp)->pipe_i + '0');
 	limiter = (*token_tmp)->tokens;
 	*file = open(*file_name, O_CREAT, O_WRONLY, O_TRUNC, 0777);
 	return (limiter);
@@ -49,21 +49,21 @@ int here_doc(t_vars **token_tmp, t_pipes **tmp)
 	while (1)
 	{
 		buf = readline("> ");
-		strjoin_free(&buf, '\n');
+		charjoin_free(&buf, '\n');
 		if (!buf)
 		{
 			free(buf);
 			return (1);
 		}
-		if (!ft_strncmp(limiter, buf, ft_strlen(buf) - 1));
+		if (!ft_strncmp(limiter, buf, ft_strlen(buf) - 1))
 			break ;
 		write(input, buf, ft_strlen(buf));
 		free(buf);
 	}
 	close(input);
 	free(buf);
-	(*tmp)->input = open(*file_name, O_RDONLY);
-	(*tmp)->heredoc = *file_name;
+	(*tmp)->input = open(file_name, O_RDONLY);
+	(*tmp)->heredoc = file_name;
 	*token_tmp = (*token_tmp)->next;
 	return (0);
 }
@@ -71,7 +71,6 @@ int here_doc(t_vars **token_tmp, t_pipes **tmp)
 int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 {
 	int	type;
-
 	type = (*token_tmp)->type;
 	*token_tmp = (*token_tmp)->next;
 	while ((*token_tmp) && ((*token_tmp)->type == SPACE 
@@ -87,18 +86,18 @@ int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 	{
 		(*tmp)->input = open((*token_tmp)->tokens, O_RDONLY);
 		if ((*tmp)->input < 0)
-			return (error("Error"));
+			return (quote_error("Error"));
 	}
 	else if (type == GREATER_THAN || type == APPEND)
 	{
 		if (open_app(tmp, token_tmp, type))
-			return (error("Error"));
+			return (quote_error("Error"));
 	}
 	*token_tmp = (*token_tmp)->next;
 	return (0);
 }
 
-int	red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
+int red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 {
 	while (*token)
 	{
@@ -118,7 +117,7 @@ int	red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 		else if ((*token)->type == PIPE)
 		{
 			if (pipes(tmp, token, first, words_count))
-				return (error("Error"));
+				return (quote_error("Error"));
 		}
 		else
 			*token = (*token)->next;
@@ -126,11 +125,11 @@ int	red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 	return (0);
 }
 
-t_pipes	*init_pipes(int index)
+t_pipes	*init_pipe(int index)
 {
 	t_pipes	*pipe;
 	int		i;
-
+	
 	i = 0;
 	pipe = malloc (sizeof(t_pipes));
 	pipe->argv = malloc(sizeof(char *) * 50);
@@ -149,15 +148,16 @@ t_pipes	*init_pipes(int index)
 	
 }
 
-t_pipes	*redirection(t_vars **token)
+t_pipes	*redirection(t_vars **tokens)
 {
 	t_vars	*token_tmp;
 	t_pipes	*tmp;
 	int		tfrist;
 	int		count_words;
 
-	g_shell->pipes = init_pipes(0);
+	g_shell->pipes = init_pipe(0);
 	tmp = g_shell->pipes;
+	token_tmp = *tokens;
 	tfrist = 0;
 	count_words = 0;
 	token_tmp = 0;

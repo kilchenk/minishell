@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:26:42 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 12:53:10 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:54:36 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,4 @@ void	free_tokens(t_vars **token)
 		tmp = next;
 	}
 	*token = NULL;
-}
-
-int	error(char *err)
-{
-	ft_putstr_fd(err, 2);
-	free_tokens(&(g_shell->var));
-	return (1);
 }

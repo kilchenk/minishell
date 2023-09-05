@@ -6,7 +6,7 @@
 /*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 14:08:48 by hsievier         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:59:09 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_pipes
 	int		output;
 	int		fd[2];
 	int		pipe_i;
-	int		next;
+	int		*next;
 	char	*heredoc;
 }	t_pipes;
 
@@ -83,11 +83,11 @@ void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token);
 t_vars	*create_token(int *i, char *tokens);
 int		check(t_vars **tmp);
 void	free_tokens(t_vars **tok);
-int		open_app(t_pipes **tmp, t_vars **token_tmp, int type);
 
 //addfunct
 int		check(t_vars **tmp);
 int		quote_error(char *s);
+int		open_app(t_pipes **tmp, t_vars **token_tmp, int type);
 void	ft_strjoin_free(char **str, char *add);
 int		main_split(char **splitt, char *readd);
 char	*copy_word(char *str);
@@ -96,9 +96,8 @@ void	place_word(char **arr, char *str);
 char	**split_mini(char *str);
 char	*double_quote(char *str);
 t_pipes	*redirection(t_vars **token);
-int		error(char *err);
+int		pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *count_words)
 int		quote(t_pipes **tmp, t_vars **token, int *first, int *words_count);
-int		pipes(t_pipes **tmp, t_vars **token, int *first, int *words_count);
-t_pipes	*init_pipes(int index);
+t_pipes	*init_pipe(int index);
 
 #endif
