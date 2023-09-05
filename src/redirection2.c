@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/04 15:14:08 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:48:30 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	quote(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 	return (0);
 }
 
-int	pipes(t_pipes **tmp, t_vars **token, int *first, int *words_count)
+int	pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *count_words)
 {
 	if (!(*first))
 		return (1);
-	(*tmp)->argv[*words_count] = NULL;
-	*words_count = 0;
+	(*tmp)->argv[*count_words] = NULL;
+	*count_words = 0;
 	*first = (*tmp)->pipe_i;
-	*token = (*token)->next;
+	*token_tmp = (*token_tmp)->next;
 	(*tmp)->next = init_pipe(*first + 1);
 	*tmp = (*tmp)->next;
 	*first = 0;

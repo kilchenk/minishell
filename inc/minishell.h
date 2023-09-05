@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 15:10:20 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:44:34 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,22 @@ typedef struct s_vars
 
 typedef struct s_pipes
 {
-	char 	**argv;
-	char 	*cmd;
-	int		input;
-	int		output;
-	int		fd[2];
-	int		pipe_i;
-	int		*next;
-	char	*heredoc;
+	char		 	**argv;
+	char		 	*cmd;
+	int				input;
+	int				output;
+	int				fd[2];
+	int				pipe_i;
+	char			*heredoc;
+	struct s_pipes	*next;
 }	t_pipes;
 
 
 typedef struct s_shell
 {
 	char		**env;
-	t_pipes		*pipes;	
+	int			counter;
+	t_pipes		*pipes;
 	t_vars		*var;
 }	t_shell;
 
@@ -96,7 +97,7 @@ void	place_word(char **arr, char *str);
 char	**split_mini(char *str);
 char	*double_quote(char *str);
 t_pipes	*redirection(t_vars **token);
-int		pipes(t_pipes **tmp, t_vars **token, int *first, int *words_count);
+int		pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *words_count);
 int		quote(t_pipes **tmp, t_vars **token, int *first, int *words_count);
 t_pipes	*init_pipe(int index);
 
