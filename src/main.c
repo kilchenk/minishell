@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 16:59:03 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:16:13 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv) //char **envp)
 		string = readline("minishel > ");
 		if (!string)
 			return (0);
-		if (!(ft_strncmp(string, "\0", 1)))
+		if (!(strcmp(string, "\0")))
 		{
 			free(string);
 			continue ;

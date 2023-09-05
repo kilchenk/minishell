@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 14:59:12 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:16:46 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,38 +98,6 @@ int	init_list(t_vars **var, char *read, char **split)
 	return (0);
 }
 
-int	main_split(char **splitt, char *readd)
-{
-	int	i;
-	
-	i = 0;
-	add_history(readd);
-	if (init_list(&(g_shell->var), readd, splitt) == 1)
-	{
-		while (splitt[i])
-		{
-			free(splitt[i]);
-			i++;	
-		}
-		free(splitt);
-		free(readd);
-		return (1);
-	}
-	lexer();
-	g_shell->pipes = redirection(&(g_shell->var));
-	if (g_shell->pipes == NULL)
-	{
-		while (splitt[i])
-		{
-			free(splitt[i]);
-			i++;	
-		}
-		free(splitt);
-		free(readd);
-		return (1);
-	}
-	return (0);
-}
 
 char	*copy_word(char *str)
 {
@@ -152,4 +120,37 @@ char	*copy_word(char *str)
 		i++;
 	}
 	return (word);
+}
+
+int	main_split(char **splitt, char *readd)
+{
+	int	i;
+
+	i = 0;
+	add_history(readd);
+	if (init_list(&(g_shell->var), readd, splitt) == 1)
+	{
+		while (splitt[i])
+		{
+			free(splitt[i]);
+			i++;	
+		}
+		free(splitt);
+		free(readd);
+		return (1);
+	}
+	lexer();
+	g_shell->pipes = redirection(&(g_shell->var));
+	if (g_shell->pipes == NULL)
+	{
+		while (splitt[i])
+		{
+			free(splitt[i]);
+			i++;
+		}
+		free(splitt);
+		free(readd);
+		return (1);
+	}
+	return (0);
 }
