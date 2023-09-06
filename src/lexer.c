@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/06 15:11:15 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:31:23 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	get_tokens(t_vars **var)
 	t_vars	*tmp;
 
 	tmp = *var;
-	while (check(&tmp))
-		continue ;
 	while (tmp != NULL)
 	{
+		if (check(&tmp))
+			continue ;
 		if (tmp->tokens[0] == '|' && !(tmp->tokens[1]))
 			tmp->type = PIPE;
 		else if (tmp->tokens[0] == '>' && tmp->tokens[1]
