@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/05 19:49:54 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:53:28 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 t_shell *g_shell = NULL;
 
-void	init_envp(int *counter, int *i, char **tmp, char **envp)
+// counter - отслеживает количество переменных среды.
+// tmp - управляет памятью для массива указателей на символы (строки).
+// i — счетчик циклов для различных операций внутри функции.
+
+void	init_envp(int *counter, int *i, char ***tmp, char **envp)
 {
-	counter = 0;
-	i = 0;
+	*counter = 0;
+	*i = 0;
 	g_shell = malloc(sizeof(t_shell));
 	while (envp[*counter])
 		(*counter)++;
-	tmp = malloc(sizeof(char *) * 1000);
+	*tmp = malloc(sizeof(char *) * 1000);
 	while (*i < 1000)
 	{
-		tmp[*i] = NULL;
+		(*tmp)[*i] = NULL;
 		(*i)++;
 	}
-	i = 0;
+	*i = 0;
 }
 
 int	envpp(char **envp)

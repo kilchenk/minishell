@@ -6,11 +6,11 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:20:34 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/05 17:54:10 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:58:25 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/minishell.h"
+#include "../inc/minishell.h"
 
 // void	expander(t_vars **tmp)
 // {
