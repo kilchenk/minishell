@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:54:55 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/06 15:11:17 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:14:17 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	lexer(void)
 {
 	get_tokens(&(g_shell->var));
 	get_word(&(g_shell->var));
+	expander(&(g_shell->var));
 }
 
 void	get_word(t_vars **var)
