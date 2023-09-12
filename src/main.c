@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/06 14:53:28 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/12 13:04:28 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,4 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
+	
