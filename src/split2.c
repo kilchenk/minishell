@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/04 14:59:12 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:39:20 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	cat_quote(int *word, char **split, t_vars **var)
 	char	quote;
 	t_vars	*tmp;
 
-	tmp = malloc(sizeof(t_type));
+	tmp = malloc(sizeof(t_vars));
 	tmp->tokens = NULL;
 	quote = split[*word][0];
 	(*word)--;

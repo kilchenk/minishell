@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:34:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/03/20 20:50:33 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:27:34 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*res;
 
-	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (str == NULL)
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	else if (!s1)
+		return (ft_strdup(s2));
+	else if (!s2)
+		return (ft_strdup(s1));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	res = (char *) malloc(s1_len + s2_len + 1);
+	if (!res)
 		return (NULL);
-	j = 0;
-	i = 0;
-	while (s1[j])
-	{
-		str[i] = s1[j];
-		i++;
-		j++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = 0;
-	return (str);
+	ft_memmove(res, s1, s1_len);
+	ft_memmove(res + s1_len, s2, s2_len + 1);
+	return (res);
 }

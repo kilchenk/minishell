@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/01 17:02:32 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:31:38 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int	word_count(char *str)
 		str++;
 	while (*str != '\0')
 	{
-		word++;
+		word++; //!!
 		if (*str == '\'' || *str == ' ' || *str == '\"')
 		{
 			str++;
 			continue ;
 		}
 		while (*str != ' ' && *str != '\n' && *str != '\t' && *str != '\r'
-			&& *str != '\v' && *str != '\f' && *str != '\'' && *str != ' ' 
+			&& *str != '\v' && *str != '\f' && *str != '\'' && *str != '\0'
 			&& *str != '\"')
 			str++;
 	}
