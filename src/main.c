@@ -6,13 +6,23 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/12 13:04:28 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:00:14 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 t_shell *g_shell = NULL;
+
+void last_count(t_pipes *pipes)
+{
+	g_shell->last = -1;
+	while (pipes)
+	{
+		pipes = pipes->next;
+		g_shell->last++;
+	}
+}
 
 // counter - отслеживает количество переменных среды.
 // tmp - управляет памятью для массива указателей на символы (строки).
@@ -84,6 +94,8 @@ int	main(int argc, char **argv, char **envp)
 		split = split_mini(string);
 		if (main_split(split, string) == 1)
 			continue ;
+		last_count(g_shell->pipes);
+		executor(g_shell->pipes);
 	}
 	return (0);
 }

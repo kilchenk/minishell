@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/12 13:10:19 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:59:14 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_shell
 	char		**env;
 	int			counter;
 	int			error;
+	int			last;
 	t_pipes		*pipes;
 	t_vars		*var;
 }	t_shell;
@@ -110,6 +111,7 @@ void	change_quotes(t_vars *tmp);
 void	change_words(t_vars *tmp);
 void	init_main(int argc, char **argv, char **envp);
 int		envpp(char **envp);
+int		executor(t_pipes *data);
 void	init_envp(int *counter, int *i, char ***tmp, char **envp);
 
 #endif
