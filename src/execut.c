@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/14 19:40:13 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:48:24 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,4 @@ int executor(t_pipes *data)
 		//here we need function for setting up the execution of external (non-built-in) commands, for our pipe_fd;
 	}
 	return (0);
+}
