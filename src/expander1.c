@@ -24,10 +24,19 @@ void	change_words(t_vars *tmp)
 		tmp->tokens = ft_itoa(g_shell->error);
 		return ;
 	}
-	key = //?
+	key = ft_substr(tmp->tokens, 1, ft_strlen(tmp->tokens) - 1);
 	i = find_path_env(g_shell->env, key);
 	if (i == -1)
 	{
-		
+		free(tmp->tokens);
+		free(key);
+		tmp->lenght = 0;
+		tmp->tokens = ft_strdup("");
+		return ;
 	}
+	ret = cut_key(g_shell->env, i, key);
+	free(tmp->tokens);
+	free(key);
+	tmp->tokens = ret;
+	tmp->lenght = ft_strlen(ret);
 }
