@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/09/14 17:45:35 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/09/19 15:01:02 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ LIB = libft.a
 SRC = src
 OBJ = obj
 INC = inc
-CFLAGS = -Wextra -Werror -Wall -fsanitize=address -g -I $(INC)
+CFLAGS = #-Wextra -Werror -Wall -fsanitize=address -g -I $(INC)
 #DEBUG_SEG_FAULTS = -fsanitize=address #for segfault checking
 RM = rm -rf
 CC = gcc
 SRCS = src/main.c src/lexer.c src/split.c src/split2.c src/lexer2.c src/errors.c \
 		src/expander.c src/utils.c src/redirection.c src/redirection2.c src/execut.c \
-		src/expander1.c src/cd.c
+		src/expander1.c src/cd.c src/exit.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

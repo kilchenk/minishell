@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/14 19:35:02 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:57:12 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		word_count(char *str);
 void	place_word(char **arr, char *str);
 char	**split_mini(char *str);
 char	*double_quote(char *str);
-void	expander(t_vars **tmp);
+void	expander(t_vars **token);
 t_pipes	*redirection(t_vars **token);
 void	charjoin_free(char **str, char add);
 int		pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *words_count);
@@ -118,6 +118,9 @@ void	init_envp(int *counter, int *i, char ***tmp, char **envp);
 int		own_cd(char *arg);
 void 	up_var(char *arg);
 int		find_index_of_char(char *arg, char c);
-
+void	free_shell(void);
+void	free_pipe(t_pipes **token);
+void	free_argv(char **argv);
+int		own_exit(char **argv);
 
 #endif

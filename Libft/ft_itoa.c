@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:45:53 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/03/20 20:50:06 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:47:31 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,55 @@ int	len(long nb)
 	int	len;
 
 	len = 0;
-	if (nb <= 0)
+	if (nb < 0)
 	{
 		nb = nb * -1;
-		len ++;
+		len++;
+	}
+	if (nb == 0)
+	{
+		return (1);
 	}
 	while (nb > 0)
 	{
 		nb = nb / 10;
-		len ++;
+		len++;
 	}
 	return (len);
 }
 
-char	*zero(char *s)
+char	*if_zero(char *s)
 {
 	s[0] = '0';
 	return (s);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int nb)
 {
-	char	*str;
+	char	*s;
+	long	n;
 	int		i;
-	long	j;
 
-	j = n;
-	i = len(j);
-	str = (char *)malloc(sizeof (char) * (i + 1));
-	if (!str)
+	n = nb;
+	i = len(n);
+	s = (char *)malloc(sizeof(char) * (i + 1));
+	if (!s)
 		return (NULL);
-	str[i--] = '\0';
-	if (j == 0)
+	s[i--] = '\0';
+	if (n == 0)
 	{
-		zero(str);
+		if_zero(s);
 	}
-	if (j < 0)
+	if (n < 0)
 	{
-		str[0] = '-';
-		j = j * -1;
+		s[0] = '-';
+		n = n * -1;
 	}
-	while (j > 0)
+	while (n > 0)
 	{
-		str[i--] = '0' + (j % 10);
-		j = j / 10;
+		s[i--] = '0' + (n % 10);
+		n = n / 10;
 	}
-	return (str);
+	return (s);
 }
+

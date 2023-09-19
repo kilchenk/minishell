@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:18:23 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/14 19:38:54 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:34:26 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void up_var(char *arg)
 	char	*str;
 	int		i;
 
-	str = ft_substr(arg, 0, find_index_of_char(arg, "=") + 1);
+	str = ft_substr(arg, 0, find_index_of_char(arg, '=') + 1);
 	i = find_path_env(g_shell->env, str);
 	if (i != -1)
 	{
@@ -47,7 +47,7 @@ int change_cd(char *arg)
 	char	*sub;
 
 	sub = getcwd(0, 256);
-	if (chdir(sub) == -1)
+	if (chdir(arg) == -1)
 	{
 		free(sub);
 		return (-1);
