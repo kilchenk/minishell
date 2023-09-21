@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 17:20:46 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:46:26 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 		if ((*token)->type == APPEND || (*token)->type == HEREDOC
 			|| (*token)->type == LESS_THAN || (*token)->type == GREATER_THAN)
 		{
+			// printf("1\n");
 			red_create(token, tmp);
 			if ((g_shell->pipes) == NULL)
 				return (1);
@@ -111,16 +112,21 @@ int red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 		else if ((*token)->type == SINGLE_QUOTES
 			|| (*token)->type == DOUBLE_QUOTES || (*token)->type == WORD)
 		{
+			// printf("2\n");
 			if (quote(tmp, token, first, words_count))
 				continue ;
 		}
 		else if ((*token)->type == PIPE)
 		{
+			// printf("3\n");
 			if (pipes(tmp, token, first, words_count))
 				return (quote_error("Error"));
 		}
 		else
+		{
+			// printf("4\n");
 			*token = (*token)->next;
+		}
 	}
 	return (0);
 }

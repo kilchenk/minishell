@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/20 17:30:02 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:34:32 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	quote(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 	(*tmp)->argv[*words_count] = ft_strdup((*token)->tokens);
 	if (!(*first))
 	{
-		printf("%i\n", *first);
+		//printf("%i\n", *first);
 		(*tmp)->cmd = (*tmp)->argv[*words_count];
 		*first = 1;
-		printf("%i\n", *first);
+		//printf("%i\n", *first);
 	}
 	// else
-	// 	*first = 0;
+	// *first = 0;
 	(*words_count)++;
 	*token = (*token)->next;
 	return (0);

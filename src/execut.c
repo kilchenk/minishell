@@ -6,11 +6,33 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 13:24:03 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:56:42 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int	nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd)
+{
+	char	*pat;
+
+	if (data->output != -1)
+		out_fd = data->output;
+	else if (g_shell->last == data->pipe_i)
+		out_fd = STDOUT_FILENO;
+	if (data->input != -1)
+		in_fd = data->input;
+	else if (prev && prev->output != -1)
+		in_fd = STDIN_FILENO;
+	//pat =  need func for PATH
+	// if (!pat)
+	// {
+	// 	quote_error("Error: command not found\n");
+	// 	return(STDIN_FILENO);
+	// }
+	// free(pat);
+	// return (need func for forc and execute)
+}
 
 int	parent_builtin(t_pipes	*pipes)
 {
@@ -44,7 +66,9 @@ int executor(t_pipes *data)
 			data = data->next;
 			continue ;
 		}
-		//here we need function for setting up the execution of external (non-built-in) commands, for our pipe_fd;
+		pipe_fd = nonbuiltin_cmd(data, prev, pipe_fd, -1); //here we need function for setting up the execution of external (non-built-in) commands, for our pipe_fd;
+		prev = data->next;
+		data = data->next;
 	}
 	if (pipe_fd > 2)
 		close(pipe_fd);
