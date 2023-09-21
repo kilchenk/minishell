@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/06 17:31:23 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:07:04 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,17 @@ t_vars	*create_token(int *i, char *tokens)
 	return (new);
 }
 
-void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
+void	token_algo(t_vars **tmp, t_vars **new, t_vars **new_token)
 {
 	int	i;
 
 	i = 0;
-	while (tmp->tokens[i])
+	while ((*tmp)->tokens[i])
 	{
-		if (tmp->tokens[i] == '<' || tmp->tokens[i] == '>' 
-			|| tmp->tokens[i] == '|')
+		if ((*tmp)->tokens[i] == '<' || (*tmp)->tokens[i] == '>' 
+			|| (*tmp)->tokens[i] == '|')
 		{
-			(*new)->next = create_token(&i, tmp->tokens);
+			(*new)->next = create_token(&i, (*tmp)->tokens);
 			(*new_token) = (*new)->next;
 			(*new_token)->next = malloc(sizeof(t_vars));
 			(*new) = (*new_token)->next;
@@ -99,7 +99,7 @@ void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
 		}
 		else
 		{
-			join_and_free(&((*new)->tokens), tmp->tokens[i]);
+			join_and_free(&((*new)->tokens), (*tmp)->tokens[i]);
 		}
 		i++;
 	}
@@ -109,13 +109,58 @@ void	find_token(t_vars **tmp)
 {
 	t_vars	*new_token;
 	t_vars	*new;
+	t_vars	*new_struct;
 
 	new = malloc(sizeof(t_vars));
-	new->type = WORD;
+	new_struct = new;
 	new->tokens = NULL;
-	token_algo(*tmp, &new, &new_token);
+	new->type = WORD;
+	token_algo(tmp, &new, &new_token);
 	free((*tmp)->tokens);
 	(*tmp)->tokens = NULL;
 	new->next = (*tmp)->next;
+	(*tmp)->next = new_struct;
 	(*tmp) = new->next;
+	
 }
+
+// void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (tmp->tokens[i])
+// 	{
+// 		if (tmp->tokens[i] == '<' || tmp->tokens[i] == '>' 
+// 			|| tmp->tokens[i] == '|')
+// 		{
+// 			(*new)->next = create_token(&i, tmp->tokens);
+// 			(*new_token) = (*new)->next;
+// 			(*new_token)->next = malloc(sizeof(t_vars));
+// 			(*new) = (*new_token)->next;
+// 			(*new)->type = WORD;
+// 			(*new)->tokens = NULL;
+// 			continue ;
+// 		}
+// 		else
+// 		{
+// 			join_and_free(&((*new)->tokens), tmp->tokens[i]);
+// 		}
+// 		i++;
+// 	}
+// }
+
+// void	find_token(t_vars **tmp)
+// {
+// 	t_vars	*new_token;
+// 	t_vars	*new;
+
+// 	new = malloc(sizeof(t_vars));
+// 	new->type = WORD;
+// 	new->tokens = NULL;
+// 	token_algo(*tmp, &new, &new_token);
+// 	free((*tmp)->tokens);
+// 	(*tmp)->tokens = NULL;
+// 	new->next = (*tmp)->next;
+// 	(*tmp) = new->next;
+// }

@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 15:06:23 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:20:46 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 			if ((g_shell->pipes) == NULL)
 				return (1);
 		}
-		else if ((*token)->type == SINGLE_QUOTES 
+		else if ((*token)->type == SINGLE_QUOTES
 			|| (*token)->type == DOUBLE_QUOTES || (*token)->type == WORD)
 		{
 			if (quote(tmp, token, first, words_count))
@@ -160,11 +160,11 @@ t_pipes	*redirection(t_vars **tokens)
 	token_tmp = *tokens;
 	tfrist = 0;
 	count_words = 0;
-	token_tmp = 0;
 	if (red_loop(&tmp, &token_tmp, &tfrist, &count_words))
 		return (NULL);
 	if (!tfrist)
 	{
+		printf("%i\n", tfrist);
 		quote_error("Error: syntax error\n");
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 14:57:12 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:06:29 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	get_tokens(t_vars **var);
 void	find_token(t_vars **tmp);
 void	get_word(t_vars **var);
 void	join_and_free(char **str, char plus);
-void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token);
+//void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token);
+void	token_algo(t_vars **tmp, t_vars **new, t_vars **new_token);
 t_vars	*create_token(int *i, char *tokens);
 int		check(t_vars **tmp);
 void	free_tokens(t_vars **tok);

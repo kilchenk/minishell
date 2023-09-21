@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 17:26:42 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 16:11:54 by kilchenk         ###   ########.fr       */
+/*   Created: 2023/09/20 16:34:38 by kilchenk          #+#    #+#             */
+/*   Updated: 2023/09/20 17:08:55 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "libft.h"
 
-int	quote_error(char *s)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	ft_putstr_fd(s, 2);
-	free_tokens(&(g_shell->var));
-	free_pipe(&(g_shell->pipes));
-	return (1);
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

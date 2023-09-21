@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 15:02:30 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:24:03 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int executor(t_pipes *data)
 	t_pipes	*prev;
 	int		pipe_fd;
 
-	prev = NULL;
 	pipe_fd = STDIN_FILENO;
+	prev = NULL;
 	while (data)
 	{
 		if (g_shell->last == 0 && parent_builtin(data) != -1)
@@ -46,5 +46,7 @@ int executor(t_pipes *data)
 		}
 		//here we need function for setting up the execution of external (non-built-in) commands, for our pipe_fd;
 	}
+	if (pipe_fd > 2)
+		close(pipe_fd);
 	return (0);
 }

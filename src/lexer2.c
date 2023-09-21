@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:54:55 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/07 13:14:17 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:05:39 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	get_word(t_vars **var)
 	{
 		if (tmp->type == WORD)
 		{
-			find_token(var);
+			find_token(&tmp);
+			continue ;
 		}
 		tmp = tmp->next;
 	}

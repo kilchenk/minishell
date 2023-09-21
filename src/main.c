@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/13 19:00:14 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:27:16 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,12 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		last_count(g_shell->pipes);
 		executor(g_shell->pipes);
+		free_tokens(&(g_shell->var));
+		free_pipe(&(g_shell->pipes));
+		free(string);
+		free(split);
 	}
+	free_shell();
 	return (0);
 }
 	
