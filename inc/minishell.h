@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 16:06:29 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:33:44 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_vars
 
 typedef struct s_pipes
 {
-	char		 	**argv;
-	char		 	*cmd;
+	char			**argv;
+	char			*cmd;
 	int				input;
 	int				output;
 	int				fd[2];
@@ -62,7 +62,6 @@ typedef struct s_pipes
 	char			*heredoc;
 	struct s_pipes	*next;
 }	t_pipes;
-
 
 typedef struct s_shell
 {
@@ -74,7 +73,7 @@ typedef struct s_shell
 	t_vars		*var;
 }	t_shell;
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 //lexer
 void	lexer(void);
@@ -117,11 +116,15 @@ void	init_envp(int *counter, int *i, char ***tmp, char **envp);
 
 //builtins
 int		own_cd(char *arg);
-void 	up_var(char *arg);
+char	*get_path(char *cmd, char **env);
+void	up_var(char *arg);
 int		find_index_of_char(char *arg, char c);
 void	free_shell(void);
 void	free_pipe(t_pipes **token);
 void	free_argv(char **argv);
 int		own_exit(char **argv);
+int		nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd);
+char	*get_path_loop(char ***binary_path, char **ppath, char **cmd_path, char *cmd);
+
 
 #endif

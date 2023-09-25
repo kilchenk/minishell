@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:20:34 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/19 13:52:36 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:36:47 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	dollar(char **ret, char *info, int *i)
 		|| info[*i + 1] == '\'' || info[*i + 1] == '\"')))
 		ft_strjoin_free(ret, ft_itoa(g_shell->error));
 	while (info[*i] != ' ' && info[*i] != '\''
-	&& info[*i] != '\"' && info[*i] != '\0')
+		&& info[*i] != '\"' && info[*i] != '\0')
 	{
 		charjoin_free(&key, info[*i]);
 		(*i)++;
@@ -91,13 +91,12 @@ void	change_quotes(t_vars *tmp)
 	tmp->lenght = ft_strlen(ret);
 }
 
-
 void	expander(t_vars **token)
 {
-	t_vars *tmp;
-	
+	t_vars	*tmp;
+
 	tmp = *token;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->type == WORD && tmp->tokens && tmp->tokens[0] == '$'
 			&& tmp->tokens[1])

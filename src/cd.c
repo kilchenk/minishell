@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:18:23 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 13:34:26 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:32:15 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	find_index_of_char(char *arg, char c)
 	return (i);
 }
 
-void up_var(char *arg)
+void	up_var(char *arg)
 {
 	char	*str;
 	int		i;
@@ -39,7 +39,7 @@ void up_var(char *arg)
 	free(str);
 }
 
-int change_cd(char *arg)
+int	change_cd(char *arg)
 {
 	char	*s1;
 	char	*s2;
@@ -65,18 +65,18 @@ int change_cd(char *arg)
 int	own_cd(char *arg)
 {
 	char	*key;
-	
+
 	if (!arg)
 	{
-		key = cut_key(g_shell->env, find_path_env(g_shell->env, "HOME"), "HOME");
-		
-		if(change_cd(key) == -1)
+		key = cut_key(g_shell->env, find_path_env(g_shell->env, "HOME"),
+				"HOME");
+		if (change_cd(key) == -1)
 			ft_putstr_fd("Error: cd: HOME not set\n", 2);
 		free(key);
 	}
 	else
 	{
-		if(change_cd(arg) == -1)
+		if (change_cd(arg) == -1)
 		{
 			ft_putstr_fd("cd: no such file or directory: ", 2);
 			ft_putstr_fd(arg, 2);

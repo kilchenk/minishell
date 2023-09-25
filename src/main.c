@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 13:27:16 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:05:47 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,3 @@ int	main(int argc, char **argv, char **envp)
 	free_shell();
 	return (0);
 }
-	

@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:43:02 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 13:24:14 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:37:10 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	change_words(t_vars *tmp)
 {
-	int	i;
+	int		i;
 	char	*key;
 	char	*ret;
 
