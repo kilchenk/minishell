@@ -12,3 +12,28 @@
 
 #include "../inc/minishell.h"
 
+int	unset(char **ar)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (ar[i])
+	{
+		j = find_path_env(g_shell->env, ar[i]);
+		if (j != -1 && g_shell->env[j])
+		{
+			free((g_shell->env[j]));
+			g_shell->env[j] = NULL;
+		}
+		else
+		{
+			ft_putstr_fd("minishell: unset: `", 2);
+			ft_putstr_fd(ar[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
