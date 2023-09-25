@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/25 12:42:34 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:46:12 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	parent_builtin(t_pipes	*pipes)
 		errors = own_cd(pipes->argv[1]);
 	else if (ft_strncmp(pipes->argv[0], "exit", 4) == 0)
 		errors = own_exit(pipes->argv);
-	// else if (ft_strncmp(pipes->argv[0], "unset", 5) == 0)
-	// // errors = unset func;
+	else if (ft_strncmp(pipes->argv[0], "unset", 5) == 0)
+		errors = own_unset(&pipes->argv[1]);
 	// else if (ft_strncmp(pipes->argv[0], "export", 6) == 0)
 	// // errors = export func;
 	else
