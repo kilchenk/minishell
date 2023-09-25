@@ -78,10 +78,10 @@ int	parent_builtin(t_pipes	*pipes)
 		errors = own_cd(pipes->argv[1]);
 	else if (ft_strncmp(pipes->argv[0], "exit", 4) == 0)
 		errors = own_exit(pipes->argv);
-	// else if (ft_strncmp(pipes->argv[0], "unset", 5) == 0)
-	// // errors = unset func;
-	// else if (ft_strncmp(pipes->argv[0], "export", 6) == 0)
-	// // errors = export func;
+	else if (ft_strncmp(pipes->argv[0], "unset", 5) == 0)
+		errors = unset(&pipes->argv[1]);
+	else if (ft_strncmp(pipes->argv[0], "export", 6) == 0)
+		errors = export func;
 	else
 		return (-1);
 	g_shell->error = errors;
