@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/25 13:46:12 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:34:48 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_path_loop(char ***binary_path, char **ppath, char **cmd_path, char *cm
 	i = -1;
 	while ((*binary_path)[++i])
 	{
-		*ppath = ft_strjoin((*binary_path)[i], '/');
+		*ppath = ft_strjoin((*binary_path)[i], "/");
 		*cmd_path = ft_strjoin(*ppath, cmd);
 		free(*ppath);
 		if (!access(*cmd_path, F_OK))
@@ -77,6 +77,7 @@ int	nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd)
 	}
 	free(pat);
 	// return (need func for forc and execute);
+	return (0);
 }
 
 int	parent_builtin(t_pipes	*pipes)
@@ -89,7 +90,7 @@ int	parent_builtin(t_pipes	*pipes)
 		errors = own_exit(pipes->argv);
 	else if (ft_strncmp(pipes->argv[0], "unset", 5) == 0)
 		errors = own_unset(&pipes->argv[1]);
-	// else if (ft_strncmp(pipes->argv[0], "export", 6) == 0)
+	// else if (ft_strncmp(pipes->argv[0], §"export", 6) == 0)
 	// // errors = export func;
 	else
 		return (-1);
