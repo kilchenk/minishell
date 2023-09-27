@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/26 17:44:28 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:01:13 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd);
 char	*get_path_loop(char ***binary_path, char **ppath, char **cmd_path, char *cmd);
 int		own_unset(char **argv);
 int		fork_exec(t_pipes *data, int in_fd, int out_fd);
+int		parent_builtin(t_pipes	*pipes);
 
 //signals
 void	signals(void);

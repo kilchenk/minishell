@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/26 13:34:48 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:09:42 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ int	nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd)
 		return(STDIN_FILENO);
 	}
 	free(pat);
-	// return (need func for forc and execute);
-	return (0);
+	return (fork_exec(data, in_fd, out_fd));
 }
 
 int	parent_builtin(t_pipes	*pipes)
