@@ -6,15 +6,15 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/25 09:05:47 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:08:34 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_shell *g_shell = NULL;
+t_shell	*g_shell = NULL;
 
-void last_count(t_pipes *pipes)
+void	last_count(t_pipes *pipes)
 {
 	g_shell->last = -1;
 	while (pipes)
@@ -49,7 +49,7 @@ int	envpp(char **envp)
 	int		counter;
 	int		i;
 	char	**tmp;
-	
+
 	init_envp(&counter, &i, &tmp, envp);
 	while (i != counter)
 	{
@@ -66,7 +66,7 @@ int	envpp(char **envp)
 	return (1);
 }
 
-void init_main(int argc, char **argv, char **envp)
+void	init_main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
@@ -96,10 +96,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		last_count(g_shell->pipes);
 		executor(g_shell->pipes);
-		free_tokens(&(g_shell->var));
-		free_pipe(&(g_shell->pipes));
-		free(string);
-		free(split);
+		free_main(string, split);
 	}
 	free_shell();
 	return (0);

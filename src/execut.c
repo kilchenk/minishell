@@ -6,16 +6,17 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:03:14 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/27 15:09:42 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:54:57 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	*get_path_loop(char ***binary_path, char **ppath, char **cmd_path, char *cmd)
+char	*get_path_loop(char ***binary_path, char **ppath,
+			char **cmd_path, char *cmd)
 {
 	int	i;
-	
+
 	i = -1;
 	while ((*binary_path)[++i])
 	{
@@ -25,7 +26,7 @@ char	*get_path_loop(char ***binary_path, char **ppath, char **cmd_path, char *cm
 		if (!access(*cmd_path, F_OK))
 		{
 			ft_free_array(*binary_path);
-			return(*cmd_path);
+			return (*cmd_path);
 		}
 		free(*cmd_path);
 	}
@@ -40,7 +41,7 @@ char	*get_path(char *cmd, char **env)
 	char	*ppath;
 	char	*cmd_path;
 	char	**binary_path;
-	
+
 	if (!access(cmd, F_OK))
 		return (ft_strdup(cmd));
 	j = find_path_env(env, "PWD=");
@@ -69,11 +70,11 @@ int	nonbuiltin_cmd(t_pipes *data, t_pipes *prev, int in_fd, int out_fd)
 		in_fd = data->input;
 	else if (prev && prev->output != -1)
 		in_fd = STDIN_FILENO;
-	pat =  get_path(data->cmd, g_shell->env);
+	pat = get_path(data->cmd, g_shell->env);
 	if (!pat)
 	{
 		quote_error("Error: command not found\n");
-		return(STDIN_FILENO);
+		return (STDIN_FILENO);
 	}
 	free(pat);
 	return (fork_exec(data, in_fd, out_fd));
@@ -111,7 +112,7 @@ int	executor(t_pipes *data)
 			data = data->next;
 			continue ;
 		}
-		pipe_fd = nonbuiltin_cmd(data, prev, pipe_fd, -1);//here we need function for setting up the execution of external (non-built-in) commands, for our pipe_fd;
+		pipe_fd = nonbuiltin_cmd(data, prev, pipe_fd, -1);
 		prev = data->next;
 		data = data->next;
 	}

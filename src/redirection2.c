@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/21 14:34:32 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:13:35 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	open_app(t_pipes **tmp, t_vars **token_tmp, int type)
 {
 	if (type == APPEND)
-		(*tmp)->output = open((*token_tmp)->tokens, 
+		(*tmp)->output = open((*token_tmp)->tokens,
 				O_WRONLY, O_APPEND, O_CREAT, 0777);
 	else
 		(*tmp)->output = open((*token_tmp)->tokens,
@@ -59,4 +59,51 @@ int	pipes(t_pipes **tmp, t_vars **token_tmp, int *first, int *count_words)
 	*tmp = (*tmp)->next;
 	*first = 0;
 	return (0);
+}
+
+t_pipes	*init_pipe(int index)
+{
+	t_pipes	*pipe;
+	int		i;
+
+	i = 0;
+	pipe = malloc (sizeof(t_pipes));
+	pipe->argv = malloc(sizeof(char *) * 50);
+	while (i < 50)
+	{
+		pipe->argv[i] = NULL;
+		i++;
+	}
+	pipe->cmd = NULL;
+	pipe->heredoc = NULL;
+	pipe->input = -1;
+	pipe->output = -1;
+	pipe->next = NULL;
+	pipe->pipe_i = index;
+	return (pipe);
+
+}
+
+t_pipes	*redirection(t_vars **tokens)
+{
+	t_vars	*token_tmp;
+	t_pipes	*tmp;
+	int		tfrist;
+	int		count_words;
+
+	g_shell->pipes = init_pipe(0);
+	tmp = g_shell->pipes;
+	token_tmp = *tokens;
+	tfrist = 0;
+	count_words = 0;
+	if (red_loop(&tmp, &token_tmp, &tfrist, &count_words))
+		return (NULL);
+	if (!tfrist)
+	{
+		printf("%i\n", tfrist);
+		quote_error("Error: syntax error\n");
+		return (NULL);
+	}
+	tmp->argv[count_words] = NULL;
+	return ((g_shell->pipes));
 }

@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:36:58 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/27 15:11:19 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:55:09 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	child_outfd(int out_fd, int pipe_fd[])
 	if (out_fd == -1 || out_fd == -2)
 	{
 		dup2(pipe_fd[1], STDOUT_FILENO);
-		return(pipe_fd[1]);
+		return (pipe_fd[1]);
 	}
 	if (out_fd != STDOUT_FILENO)
 		dup2(out_fd, STDOUT_FILENO);

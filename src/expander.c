@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:20:34 by hsievier          #+#    #+#             */
-/*   Updated: 2023/09/21 16:36:47 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:00:21 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	dollar(char **ret, char *info, int *i)
 	}
 	rett = cut_key(g_shell->env, index, key);
 	ft_strjoin_free(ret, rett);
-	free(key);
-	free(rett);
+	free_in_dollar(key, rett);
 }
 
 void	change_quotes(t_vars *tmp)

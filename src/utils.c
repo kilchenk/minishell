@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:58:23 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/19 14:53:17 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:56:38 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	free_tokens(t_vars **token)
 }
 
 
-void free_pipe(t_pipes **token)
+void	free_pipe(t_pipes **token)
 {
 	t_pipes	*tmp;
-	t_pipes *next;
+	t_pipes	*next;
 
 	if (!(*token))
 		return ;
@@ -74,7 +74,7 @@ void free_pipe(t_pipes **token)
 	*token = NULL;
 }
 
-void free_shell(void)
+void	free_shell(void)
 {
 	int	i;
 

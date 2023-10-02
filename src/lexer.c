@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/25 14:27:56 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:01:21 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_vars	*create_token(int *i, char *tokens)
 
 	new = malloc(sizeof(t_vars));
 	new->tokens = NULL;
-	if (tokens[*i] == '|') 
+	if (tokens[*i] == '|')
 		new->type = PIPE;
 	else if (tokens[*i] == '<' && tokens[(*i) + 1] == '<')
 	{
@@ -86,7 +86,7 @@ void	token_algo(t_vars **tmp, t_vars **new, t_vars **new_token)
 	i = 0;
 	while ((*tmp)->tokens[i])
 	{
-		if ((*tmp)->tokens[i] == '<' || (*tmp)->tokens[i] == '>' 
+		if ((*tmp)->tokens[i] == '<' || (*tmp)->tokens[i] == '>'
 			|| (*tmp)->tokens[i] == '|')
 		{
 			(*new)->next = create_token(&i, (*tmp)->tokens);
@@ -121,7 +121,6 @@ void	find_token(t_vars **tmp)
 	new->next = (*tmp)->next;
 	(*tmp)->next = new_struct;
 	(*tmp) = new->next;
-	
 }
 
 // void	token_algo(t_vars *tmp, t_vars **new, t_vars **new_token)
