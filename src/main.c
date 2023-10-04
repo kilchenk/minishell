@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 19:08:34 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:36:09 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void	init_main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	signals();
 	envpp(envp);
+	put_lvl();
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -83,7 +85,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	while (1)
 	{
-		string = readline("minishel > ");
+		string = readline("minishell > ");
 		if (!string)
 			return (0);
 		if (!(ft_strncmp(string, "\0", 1)))

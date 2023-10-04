@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:58:23 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 18:56:38 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:50:52 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	free_tokens(t_vars **token)
 	}
 	*token = NULL;
 }
-
 
 void	free_pipe(t_pipes **token)
 {

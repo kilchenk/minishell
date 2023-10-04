@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 19:07:46 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:13:43 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 # define MAX_PATH 2000
 # define SYNTAX_ERROR "Error: syntax error near unexpected token\n"
+# define DOC_ERROR "Error: couldn't open such file or directory\n"
 
 typedef enum e_token
 {
@@ -89,6 +90,8 @@ void	free_tokens(t_vars **tok);
 
 //addfunct
 int		check(t_vars **tmp);
+void	put_lvl(void);
+void	set_new(char *arg);
 void	free_main(char *string, char **split);
 void	free_in_dollar(char *key, char *rett);
 int		quote_error(char *s);
@@ -115,6 +118,9 @@ void	init_main(int argc, char **argv, char **envp);
 int		envpp(char **envp);
 int		executor(t_pipes *data);
 void	init_envp(int *counter, int *i, char ***tmp, char **envp);
+int		red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count);
+void	end_doc(t_vars **token_tmp, t_pipes **tmp,
+			char **file_name, char **buf);
 
 //builtins
 int		own_cd(char *arg);

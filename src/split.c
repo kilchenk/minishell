@@ -6,17 +6,16 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/06 16:31:38 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 14:54:18 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-
 /*
 	arr[i] -> *(*char) -> char
 	copy_word -> char
-*/ 
+*/
 void	words(char **arr, char **str, int *i_word)
 {
 	arr[*i_word] = copy_word(*str);
@@ -30,7 +29,7 @@ void	words(char **arr, char **str, int *i_word)
 char	*double_quote(char *str)
 {
 	char	*word;
-	
+
 	word = malloc(2);
 	if (*str == '\'')
 		word[0] = '\'';
@@ -45,8 +44,7 @@ void	place_word(char **arr, char *str)
 	int	i_word;
 
 	i_word = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r'
-		|| *str == '\v' || *str == '\f')
+	while (*str == ' ' || *str == '\n' || *str == '\t')
 		str++;
 	while (*str != '\0')
 	{
@@ -80,7 +78,7 @@ int	word_count(char *str)
 		str++;
 	while (*str != '\0')
 	{
-		word++; //!!
+		word++;
 		if (*str == '\'' || *str == ' ' || *str == '\"')
 		{
 			str++;
@@ -105,4 +103,3 @@ char	**split_mini(char *str)
 	place_word(arr, str);
 	return (arr);
 }
-

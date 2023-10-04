@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:36:58 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 18:55:09 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:51:35 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	child_outfd(int out_fd, int pipe_fd[])
 	return (out_fd);
 }
 
+
+
 void	child_process(t_pipes *data, int in_fd, int out_fd, int pipe_fd[])
 {
 	int		out;
@@ -32,7 +34,7 @@ void	child_process(t_pipes *data, int in_fd, int out_fd, int pipe_fd[])
 	if (in_fd != STDIN_FILENO)
 		dup2(in_fd, STDIN_FILENO);
 	out = child_outfd(out_fd, pipe_fd);
-	if (parent_builtin(data) != -1)
+	if (parent_builtin(data) != -1) //!
 		exit(0);
 	ppath = get_path(data->cmd, g_shell->env);
 	execve(ppath, data->argv, g_shell->env);

@@ -6,13 +6,13 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/20 16:15:36 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:58:41 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	init_token(t_vars **tmp,  t_vars **var, char **split, int *word)
+void	init_token(t_vars **tmp, t_vars **var, char **split, int *word)
 {
 	*tmp = malloc(sizeof(t_vars));
 	(*tmp)->tokens = ft_strdup(split[*word]);
@@ -88,7 +88,7 @@ int	init_list(t_vars **var, char *read, char **split)
 	word -= 1;
 	while (word >= 0)
 	{
-		if(split[word][0] == '\'' || split[word][0] == '\"')
+		if (split[word][0] == '\'' || split[word][0] == '\"')
 		{
 			cat_quote(&word, split, var);
 			continue ;
@@ -98,19 +98,41 @@ int	init_list(t_vars **var, char *read, char **split)
 	return (0);
 }
 
+// int	main_split(char **splitt, char *readd)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	add_history(readd);
+// 	if (init_list(&(g_shell->var), readd, splitt) == 1)
+// 	{
+// 		while (splitt[i++])
+// 			free(splitt[i]);
+// 		free(splitt);
+// 		free(readd);
+// 		return (1);
+// 	}
+// 	lexer();
+// 	g_shell->pipes = redirection(&(g_shell->var));
+// 	if (g_shell->pipes == NULL)
+// 	{
+// 		free_argv(splitt);
+// 		free(readd);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
 int	main_split(char **splitt, char *readd)
 {
 	int	i;
-	
+
 	i = 0;
 	add_history(readd);
 	if (init_list(&(g_shell->var), readd, splitt) == 1)
 	{
-		while (splitt[i])
-		{
+		while (splitt[i++])
 			free(splitt[i]);
-			i++;	
-		}
 		free(splitt);
 		free(readd);
 		return (1);
@@ -119,37 +141,11 @@ int	main_split(char **splitt, char *readd)
 	g_shell->pipes = redirection(&(g_shell->var));
 	if (g_shell->pipes == NULL)
 	{
-		while (splitt[i])
-		{
+		while (splitt[i++])
 			free(splitt[i]);
-			i++;	
-		}
 		free(splitt);
 		free(readd);
 		return (1);
 	}
 	return (0);
-}
-
-char	*copy_word(char *str)
-{
-	int		i;
-	int		wi;
-	int		len;
-	char	*word;
-
-	i = 0;
-	wi = 0;
-	while (str[wi] != '\0' && str[wi] != ' ' && str[wi] != '\t'
-		&& str[wi] != '\n' && str[wi] != '\"' && str[wi] != '\'')
-		wi++;
-	len = wi;
-	word = malloc(sizeof(char) * (len + 1));
-	word[len] = '\0';
-	while (i < len)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	return (word);
 }

@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 19:13:23 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:33:07 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*here_doc_init(char	**file_name, t_vars	**token_tmp,
 	*file_name = ft_strdup(".here_doc");
 	charjoin_free(file_name, (*tmp)->pipe_i + '0');
 	limiter = (*token_tmp)->tokens;
-	*file = open(*file_name, O_CREAT, O_WRONLY, O_TRUNC, 0777);
+	*file = open(*file_name, O_CREAT, O_WRONLY, O_TRUNC, 0000644);
 	return (limiter);
 }
 
@@ -50,7 +50,7 @@ int	here_doc(t_vars **token_tmp, t_pipes **tmp)
 		return (quote_error("Error: coldn't open \"heredoc\""));
 	while (1)
 	{
-		buf = readline("> ");
+		buf = readline("pipe heredoc> ");
 		charjoin_free(&buf, '\n');
 		if (!buf)
 		{
@@ -63,10 +63,7 @@ int	here_doc(t_vars **token_tmp, t_pipes **tmp)
 		free(buf);
 	}
 	close(input);
-	free(buf);
-	(*tmp)->input = open(file_name, O_RDONLY);
-	(*tmp)->heredoc = file_name;
-	*token_tmp = (*token_tmp)->next;
+	end_doc(token_tmp, tmp, &file_name, &buf);
 	return (0);
 }
 
@@ -79,9 +76,8 @@ int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 	while ((*token_tmp) && ((*token_tmp)->type == SPACE
 			|| ((*token_tmp)->type == WORD && !((*token_tmp)->tokens))))
 		*token_tmp = (*token_tmp)->next;
-	if (!(*token_tmp) || ((*token_tmp)->type != SINGLE_QUOTES
-			&& (*token_tmp)->type != DOUBLE_QUOTES
-			&& (*token_tmp)->type != WORD))
+	if (!(*token_tmp) || ((*token_tmp)->type != SINGLE_QUOTES \
+		&& (*token_tmp)->type != DOUBLE_QUOTES && (*token_tmp)->type != WORD))
 		return (quote_error(SYNTAX_ERROR));
 	if (type == HEREDOC)
 		return (here_doc(token_tmp, tmp));
@@ -89,12 +85,12 @@ int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 	{
 		(*tmp)->input = open((*token_tmp)->tokens, O_RDONLY);
 		if ((*tmp)->input < 0)
-			return (quote_error("Error"));
+			return (quote_error(DOC_ERROR));
 	}
 	else if (type == GREATER_THAN || type == APPEND)
 	{
 		if (open_app(tmp, token_tmp, type))
-			return (quote_error("Error"));
+			return (quote_error(DOC_ERROR));
 	}
 	*token_tmp = (*token_tmp)->next;
 	return (0);
@@ -120,7 +116,7 @@ int	red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count)
 		else if ((*token)->type == PIPE)
 		{
 			if (pipes(tmp, token, first, words_count))
-				return (quote_error("Error"));
+				return (quote_error("Error: syntax error\n"));
 		}
 		else
 			*token = (*token)->next;

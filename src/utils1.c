@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:57:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/02 19:08:13 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:13:08 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,37 @@ void	free_main(char *string, char **split)
 	free_pipe(&(g_shell->pipes));
 	free(string);
 	free(split);
+}
+
+void	set_new(char *arg)
+{
+	char	*str;
+	int		j;
+
+	str = ft_substr(arg, 0, find_index_of_char(arg, '=') + 1);
+	j = find_path_env(g_shell->env, str);
+	if (j != 1)
+	{
+		free(g_shell->env[j]);
+		g_shell->env[j] = arg;
+	}
+	else
+		g_shell->env[(g_shell->counter)++] = arg;
+	free(str);
+}
+
+void	put_lvl(void)
+{
+	int		i;
+	int		lvl;
+	char	*last;
+	char	*num;
+
+	i = find_path_env(g_shell->env, "SHLVL");
+	last = ft_strchr(g_shell->env[i], '=') + 1;
+	lvl = ft_atoi(last);
+	num = ft_itoa(lvl + 1);
+	last = ft_strjoin("SHLVL=", num);
+	set_new(last);
+	free(num);
 }
