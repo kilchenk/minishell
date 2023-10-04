@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 15:13:43 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:10:22 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	free_tokens(t_vars **tok);
 int		check(t_vars **tmp);
 void	put_lvl(void);
 void	set_new(char *arg);
+int		red_error(char *s);
 void	free_main(char *string, char **split);
 void	free_in_dollar(char *key, char *rett);
 int		quote_error(char *s);

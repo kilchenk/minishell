@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 17:33:07 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:11:33 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	here_doc(t_vars **token_tmp, t_pipes **tmp)
 	return (0);
 }
 
+
 int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 {
 	int	type;
@@ -78,19 +79,19 @@ int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 		*token_tmp = (*token_tmp)->next;
 	if (!(*token_tmp) || ((*token_tmp)->type != SINGLE_QUOTES \
 		&& (*token_tmp)->type != DOUBLE_QUOTES && (*token_tmp)->type != WORD))
-		return (quote_error(SYNTAX_ERROR));
+		return (red_error(SYNTAX_ERROR));
 	if (type == HEREDOC)
 		return (here_doc(token_tmp, tmp));
 	if (type == LESS_THAN)
 	{
 		(*tmp)->input = open((*token_tmp)->tokens, O_RDONLY);
 		if ((*tmp)->input < 0)
-			return (quote_error(DOC_ERROR));
+			return (red_error(DOC_ERROR));
 	}
 	else if (type == GREATER_THAN || type == APPEND)
 	{
 		if (open_app(tmp, token_tmp, type))
-			return (quote_error(DOC_ERROR));
+			return (red_error(DOC_ERROR));
 	}
 	*token_tmp = (*token_tmp)->next;
 	return (0);
