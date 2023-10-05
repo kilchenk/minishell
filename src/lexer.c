@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 18:16:15 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:58:15 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ t_vars	*create_token(int *i, char *tokens)
 		(*i) += 2;
 		return (new);
 	}
-	else if (tokens[*i] == '<')
+	else if (tokens[(*i)] == '<')
 		new->type = LESS_THAN;
-	else if (tokens[*i] == '>')
+	else if (tokens[(*i)] == '>')
 		new->type = GREATER_THAN;
 	(*i)++;
 	return (new);

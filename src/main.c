@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:17:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 16:36:09 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:29:01 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int	main(int argc, char **argv, char **envp)
 	char	**split;
 
 	init_main(argc, argv, envp);
-	(void)argc;
-	(void)argv;
 	while (1)
 	{
 		string = readline("minishell > ");

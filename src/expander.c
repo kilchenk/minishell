@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:20:34 by hsievier          #+#    #+#             */
-/*   Updated: 2023/10/02 19:00:21 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:41:11 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	find_path_env(char **env, char *key)
 	int	i;
 
 	i = 0;
+	// key = ft_strjoin(key, "=");
 	while (i < 1000)
 	{
 		if (env[i] && ft_strnstr(env[i], key, ft_strlen(key)))

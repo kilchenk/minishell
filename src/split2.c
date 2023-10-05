@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:11:00 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/05 14:03:44 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:39:42 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ void	cat_quote(int *word, char **split, t_vars **var)
 		ft_strjoin_free(&(tmp->tokens), split[*word]);
 		(*word)--;
 	}
-	tmp->lenght = ft_strlen(tmp->tokens);
+	if (tmp->tokens != NULL)
+		tmp->lenght = ft_strlen(tmp->tokens);
 	if (quote == '\'')
 		tmp->type = SINGLE_QUOTES;
 	else
 		tmp->type = DOUBLE_QUOTES;
+	if (tmp->tokens == NULL)
+		ft_strjoin_free(&(tmp->tokens), "\0");
 	tmp->next = *var;
 	*var = tmp;
 	(*word)--;

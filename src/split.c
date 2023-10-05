@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:03 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 14:54:18 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:32:41 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	words(char **arr, char **str, int *i_word)
 	arr[*i_word] = copy_word(*str);
 	(*i_word)++;
 	while (**str != '\0' && **str != ' ' && **str != '\n' && **str != '\t'
-		&& **str != '\r' && **str != '\v' && **str != '\f' && **str != '\''
-		&& **str != '\"')
+		&& **str != '\'' && **str != '\"')
 		++(*str);
 }
 
@@ -73,8 +72,7 @@ int	word_count(char *str)
 	int	word;
 
 	word = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r'
-		|| *str == '\v' || *str == '\f')
+	while (*str == ' ' || *str == '\n' || *str == '\t')
 		str++;
 	while (*str != '\0')
 	{
@@ -84,9 +82,8 @@ int	word_count(char *str)
 			str++;
 			continue ;
 		}
-		while (*str != ' ' && *str != '\n' && *str != '\t' && *str != '\r'
-			&& *str != '\v' && *str != '\f' && *str != '\'' && *str != '\0'
-			&& *str != '\"')
+		while (*str != ' ' && *str != '\n' && *str != '\t' && *str != '\''
+			&& *str != '\0' && *str != '\"')
 			str++;
 	}
 	return (word);
