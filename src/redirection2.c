@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/10/04 17:26:14 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:04:31 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,9 @@ t_pipes	*redirection(t_vars **tokens)
 	if (red_loop(&tmp, &token_tmp, &tfrist, &count_words))
 		return (NULL);
 	if (!tfrist)
-	{
-		// quote_error("Error: syntax error\n");
 		return (NULL);
-	}
 	tmp->argv[count_words] = NULL;
 	return ((g_shell->pipes));
 }
+
+// quote_error("Error: syntax error\n");

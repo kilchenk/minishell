@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/10/04 16:25:37 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/10/05 12:52:10 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ CC = gcc
 SRCS = src/main.c src/lexer.c src/split.c src/split2.c src/lexer2.c src/errors.c \
 		src/expander.c src/utils.c src/redirection.c src/redirection2.c src/execut.c \
 		src/expander1.c src/cd.c src/exit.c src/unset.c src/signals.c src/execut1.c \
-		src/utils1.c src/split3.c src/redirection3.c
+		src/utils1.c src/split3.c src/redirection3.c src/pwd.c src/env.c src/echo.c
+		
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

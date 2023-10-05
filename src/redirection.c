@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 18:11:33 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:04:57 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	here_doc(t_vars **token_tmp, t_pipes **tmp)
 	end_doc(token_tmp, tmp, &file_name, &buf);
 	return (0);
 }
-
 
 int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 {
