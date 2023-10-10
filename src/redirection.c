@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 18:15:44 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/05 14:04:57 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:24:41 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int	here_doc(t_vars **token_tmp, t_pipes **tmp)
 	return (0);
 }
 
+// void	skip_space(t_vars **tmp)
+// {
+// 	*tmp = (*tmp)->next;
+// 	while ((*tmp) && ((*tmp)->type == SPACE
+// 			|| ((*tmp)->type == WORD && !((*tmp)->tokens))))
+// 		*tmp = (*tmp)->next;
+// }
+
 int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 {
 	int	type;
@@ -76,6 +84,7 @@ int	red_create(t_vars	**token_tmp, t_pipes	**tmp)
 	while ((*token_tmp) && ((*token_tmp)->type == SPACE
 			|| ((*token_tmp)->type == WORD && !((*token_tmp)->tokens))))
 		*token_tmp = (*token_tmp)->next;
+	// skip_space(token_tmp);
 	if (!(*token_tmp) || ((*token_tmp)->type != SINGLE_QUOTES \
 		&& (*token_tmp)->type != DOUBLE_QUOTES && (*token_tmp)->type != WORD))
 		return (red_error(SYNTAX_ERROR));

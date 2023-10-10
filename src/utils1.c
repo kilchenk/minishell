@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:57:06 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/04 18:06:28 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:53:20 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,17 @@ void	free_in_dollar(char *key, char *rett)
 
 void	free_main(char *string, char **split)
 {
+	int	i;
+
+	i = 0;
 	free_tokens(&(g_shell->var));
 	free_pipe(&(g_shell->pipes));
 	free(string);
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
 	free(split);
 }
 

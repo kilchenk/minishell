@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:57:04 by hsievier          #+#    #+#             */
-/*   Updated: 2023/10/05 14:04:31 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:04:15 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	open_app(t_pipes **tmp, t_vars **token_tmp, int type)
 {
 	if (type == APPEND)
 		(*tmp)->output = open((*token_tmp)->tokens,
-				O_WRONLY, O_APPEND, O_CREAT, 0777);
+				O_WRONLY | O_APPEND | O_CREAT, 0777);
 	else
 		(*tmp)->output = open((*token_tmp)->tokens,
-				O_WRONLY, O_TRUNC, O_CREAT, 0777);
+				O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	if ((*tmp)->output < 0)
 		return (1);
 	return (0);

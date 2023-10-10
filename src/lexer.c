@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:15:59 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/05 17:58:15 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:41:25 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check(t_vars **tmp)
 {
-	if ((*tmp)->type != -1)
+	if ((*tmp)->type && (*tmp)->type != -1)
 	{
 		*tmp = (*tmp)->next;
 		return (1);
@@ -59,13 +59,13 @@ t_vars	*create_token(int *i, char *tokens)
 	new->tokens = NULL;
 	if (tokens[*i] == '|')
 		new->type = PIPE;
-	else if (tokens[*i] == '<' && tokens[(*i) + 1] == '<')
+	else if (tokens[(*i)] == '<' && tokens[(*i) + 1] == '<' && tokens[(*i) + 1])
 	{
 		new->type = HEREDOC;
 		(*i) += 2;
 		return (new);
 	}
-	else if (tokens[*i] == '>' && tokens[(*i) + 1] == '>')
+	else if (tokens[(*i)] == '>' && tokens[(*i) + 1] == '>' && tokens[(*i) + 1])
 	{
 		new->type = APPEND;
 		(*i) += 2;
@@ -98,9 +98,7 @@ void	token_algo(t_vars **tmp, t_vars **new, t_vars **new_token)
 			continue ;
 		}
 		else
-		{
 			join_and_free(&((*new)->tokens), (*tmp)->tokens[i]);
-		}
 		i++;
 	}
 }
@@ -113,8 +111,8 @@ void	find_token(t_vars **tmp)
 
 	new = malloc(sizeof(t_vars));
 	new_struct = new;
-	new->tokens = NULL;
 	new->type = WORD;
+	new->tokens = NULL;
 	token_algo(tmp, &new, &new_token);
 	free((*tmp)->tokens);
 	(*tmp)->tokens = NULL;
