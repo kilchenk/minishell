@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:18:23 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/09/21 16:32:15 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:17:50 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	up_var(char *arg)
 	if (i != -1)
 	{
 		free(g_shell->env[i]);
-		g_shell->env[i] = arg;
+		g_shell->env[i] = ft_strdup(arg);
 	}
 	else
-		g_shell->env[(g_shell->counter)++] = arg;
+		g_shell->env[(g_shell->counter)++] = ft_strdup(arg);
 	free(str);
 }
 
