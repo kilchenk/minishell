@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
+#    By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 14:34:23 by kilchenk          #+#    #+#              #
-#    Updated: 2023/10/10 14:41:19 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/10/17 12:32:03 by hsievier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC = gcc
 SRCS = src/main.c src/lexer.c src/split.c src/split2.c src/lexer2.c src/errors.c \
 		src/expander.c src/utils.c src/redirection.c src/redirection2.c src/execut.c \
 		src/expander1.c src/cd.c src/exit.c src/unset.c src/signals.c src/execut1.c \
-		src/utils1.c src/split3.c src/redirection3.c src/pwd.c src/env.c src/echo.c
+		src/utils1.c src/split3.c src/redirection3.c src/pwd.c src/env.c src/echo.c src/export.c src/export2.c \
 		
 OBJS = $(SRCS:.c=.o)
 

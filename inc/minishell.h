@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsievier <hsievier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:13:24 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/10/05 17:26:03 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:29:50 by hsievier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,14 @@ void	init_envp(int *counter, int *i, char ***tmp, char **envp);
 int		red_loop(t_pipes **tmp, t_vars **token, int *first, int *words_count);
 void	end_doc(t_vars **token_tmp, t_pipes **tmp,
 			char **file_name, char **buf);
+void	print_export(void);
+int		find_index_of_char(char *arg, char c);
+void	change_env(char *arg, int index);
+int		find_variable(char **envp, char *var, int var_size);
+int		check_var_name(char *var);
 
 //builtins
+int		own_export(char **av);
 int		own_cd(char *arg);
 int		own_exit(char **argv);
 int		own_pwd(void);
