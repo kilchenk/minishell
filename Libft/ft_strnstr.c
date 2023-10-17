@@ -46,3 +46,4 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 // 	   ptr2 = strnstr(largestring, smallstring, 7);
 // 	   printf ("original : %s\n", (ptr2));
 // }
+//

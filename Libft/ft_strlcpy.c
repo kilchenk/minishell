@@ -35,7 +35,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 }
 
 // int    main(void)
-// {
+/// {
 //     char dst[15] = "HelloWorld!";
 //     char dst2[15] = "HelloWorld!";
 //     const char src[11] = "teststring";

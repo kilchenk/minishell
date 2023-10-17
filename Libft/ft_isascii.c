@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-//check if the passed character is an ascii chsaracter set or not.
+//check if the passed character is an ascii chsaracter set or not..
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)

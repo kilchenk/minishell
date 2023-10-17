@@ -33,7 +33,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 }
 
 // int    main(void)
-// {
+/// {
 //     char dst[15] = "Hello";
 //     char dst2[15] = "Hello";
 

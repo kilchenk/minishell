@@ -24,4 +24,4 @@ int	ft_toupper(int c)
 // {
 // 	int c = ft_toupper('d');
 // 	printf("%c", c);
-// }
+// /}

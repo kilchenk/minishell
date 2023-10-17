@@ -24,4 +24,4 @@ int	ft_tolower(int c)
 // {
 // 	int c = ft_tolower('M');
 // 	printf ("%c", c);
-// }
+/// }

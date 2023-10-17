@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-//fills the first n bytes of the memory area pointed
+///fills the first n bytes of the memory area pointed
 //to by s with the constant byte c.
 void	*ft_memset(void *str, int c, size_t n)
 {

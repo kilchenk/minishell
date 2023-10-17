@@ -36,4 +36,4 @@ char	*ft_strrchr(const char *s, int c)
 //     printf("string.h : %s\n", strrchr(dst2, c));
 //     printf("%s\n", dst2);
 //     return(0);
-// }
+/// }
