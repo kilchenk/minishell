@@ -30,7 +30,7 @@ The shell:
     - `env` with no options or arguments
     - `exit` with no options
  
-For more check the [subject](subject.pdf)
+* For more check the [subject](subject.pdf)
 
 ## Launching the program
 
