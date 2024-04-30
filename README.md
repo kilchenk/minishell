@@ -39,3 +39,6 @@ To launch the program use command `make`. Then execute `./minishell`. Now you ca
 
 ### Compatibility
 The project is done on `MacOS`, so some features may not work properly on `Linux`
+
+---
+Made by kilchenk: kilchenk@student.42wolfsburg.de | LinkedIn: [kilchenk](https://www.linkedin.com/in/kyrylo-ilchenko/)
